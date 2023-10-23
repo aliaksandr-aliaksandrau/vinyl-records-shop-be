@@ -5,16 +5,25 @@ import {
 import { middyfy } from "@libs/lambda";
 
 import schema from "./schema";
-import { mockedMusicRecords } from "./../../model/mocked-data";
+import productsDataService from "./../../services";
 
 const getProductsList: ValidatedEventAPIGatewayProxyEvent<
   typeof schema
 > = async () => {
-  return {
-    statusCode: 200,
-    headers,
-    body: JSON.stringify(mockedMusicRecords),
-  };
+  try {
+    const records = await productsDataService.getMusicRecordsList();
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify(records),
+    };
+  } catch (e) {
+    return {
+      statusCode: 500,
+      headers,
+      body: e,
+    };
+  }
 };
 
 export const main = middyfy(getProductsList);
