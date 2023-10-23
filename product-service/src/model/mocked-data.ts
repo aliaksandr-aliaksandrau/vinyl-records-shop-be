@@ -7,8 +7,9 @@ export const mockedMusicRecords: MusicRecord[] = [
     description: "Short Product Description1",
     price: 2.4,
     title: "Cosmo's Factory",
-    author: "Creedence Clearwater Revival",
+    artist: "Creedence Clearwater Revival",
     year: 1970,
+    album_cover_link: 'https://upload.wikimedia.org/wikipedia/en/5/58/Jeffair.jpg'
   },
   {
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80a0",
@@ -16,8 +17,9 @@ export const mockedMusicRecords: MusicRecord[] = [
     description: "Short Product Description2",
     price: 10,
     title: "Let It Be",
-    author: "The Beatles",
+    artist: "The Beatles",
     year: 1970,
+    album_cover_link: 'https://upload.wikimedia.org/wikipedia/en/2/25/LetItBe.jpg'
   },
   {
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80a2",
@@ -25,7 +27,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     description: "Short Product Description3",
     price: 23,
     title: "The Wall",
-    author: "Pink Floyd",
+    artist: "Pink Floyd",
     year: 1979,
   },
   {
@@ -34,7 +36,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     description: "Short Product Description7",
     price: 15,
     title: "Wish You Were Here",
-    author: "Pink Floyd",
+    artist: "Pink Floyd",
     year: 1975,
   },
   {
@@ -43,7 +45,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     description: "Short Product Description2",
     price: 23,
     title: "The Doors",
-    author: "The Doors",
+    artist: "The Doors",
     year: 1967,
   },
   {
@@ -52,7 +54,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     description: "Short Product Description4",
     price: 15,
     title: "Surrealistic Pillow",
-    author: "Jefferson Airplane",
+    artist: "Jefferson Airplane",
     year: 1967,
   },
   {
@@ -61,7 +63,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     description: "Short Product Descriptio1",
     price: 23,
     title: "Led Zeppelin IV",
-    author: "Led Zeppelin",
+    artist: "Led Zeppelin",
     year: 1971,
   },
   {
@@ -70,7 +72,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     description: "Short Product Description7",
     price: 15,
     title: "Look at Yourself",
-    author: "Uriah Heep",
+    artist: "Uriah Heep",
     year: 1971,
   },
 ];

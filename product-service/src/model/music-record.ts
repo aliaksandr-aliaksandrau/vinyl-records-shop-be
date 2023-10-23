@@ -5,5 +5,6 @@ export default interface MusicRecord {
   year?: number;
   price?: number;
   count?: number;
-  author?: string;
+  artist?: string;
+  album_cover_link?: string;
 }

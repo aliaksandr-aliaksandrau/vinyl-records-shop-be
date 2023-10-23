@@ -1,4 +1,7 @@
-import type { ValidatedEventAPIGatewayProxyEvent } from "@libs/api-gateway";
+import {
+  headers,
+  type ValidatedEventAPIGatewayProxyEvent,
+} from "@libs/api-gateway";
 import { middyfy } from "@libs/lambda";
 
 import schema from "./schema";
@@ -9,6 +12,7 @@ const getProductsList: ValidatedEventAPIGatewayProxyEvent<
 > = async () => {
   return {
     statusCode: 200,
+    headers,
     body: JSON.stringify(mockedMusicRecords),
   };
 };

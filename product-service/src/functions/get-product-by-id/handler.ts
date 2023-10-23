@@ -1,4 +1,7 @@
-import type { ValidatedEventAPIGatewayProxyEvent } from "@libs/api-gateway";
+import {
+  headers,
+  type ValidatedEventAPIGatewayProxyEvent,
+} from "@libs/api-gateway";
 import { middyfy } from "@libs/lambda";
 
 import schema from "./schema";
@@ -10,6 +13,7 @@ const getProductById: ValidatedEventAPIGatewayProxyEvent<
   const productId = event.pathParameters && event.pathParameters.productId;
   return {
     statusCode: 200,
+    headers,
     body: JSON.stringify(mockedMusicRecords.find((el) => el.id === productId)),
   };
 };
