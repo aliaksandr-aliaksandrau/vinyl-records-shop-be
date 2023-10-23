@@ -1,15 +1,10 @@
-import {
-  headers,
-  type ValidatedEventAPIGatewayProxyEvent,
-} from "@libs/api-gateway";
-import { middyfy } from "@libs/lambda";
+import { headers } from "./../../libs/api-gateway";
+import { middyfy } from "./../../libs/lambda";
 
-import schema from "./schema";
 import productsDataService from "./../../services";
+import { APIGatewayProxyResult } from "aws-lambda";
 
-const getProductsList: ValidatedEventAPIGatewayProxyEvent<
-  typeof schema
-> = async () => {
+export const getProductsList = async (): Promise<APIGatewayProxyResult> => {
   try {
     const records = await productsDataService.getMusicRecordsList();
     return {

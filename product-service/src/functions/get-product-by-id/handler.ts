@@ -1,15 +1,12 @@
-import {
-  headers,
-  type ValidatedEventAPIGatewayProxyEvent,
-} from "@libs/api-gateway";
-import { middyfy } from "@libs/lambda";
+import { headers } from "./../../libs/api-gateway";
+import { middyfy } from "./../../libs/lambda";
 
-import schema from "./schema";
-import productsDataService from "src/services";
+import productsDataService from "./../../services";
+import { APIGatewayEvent, APIGatewayProxyResult } from "aws-lambda";
 
-const getProductById: ValidatedEventAPIGatewayProxyEvent<
-  typeof schema
-> = async (event) => {
+export const getProductById = async (
+  event: APIGatewayEvent
+): Promise<APIGatewayProxyResult> => {
   try {
     const productId = event.pathParameters && event.pathParameters.productId;
 
