@@ -5,7 +5,7 @@ import type { AWS } from "@serverless/typescript";
 const serverlessConfiguration: AWS = {
   service: "product-service",
   frameworkVersion: "3",
-  plugins: ["serverless-esbuild"],
+  plugins: ["serverless-esbuild", "serverless-auto-swagger"],
   provider: {
     name: "aws",
     runtime: "nodejs16.x",

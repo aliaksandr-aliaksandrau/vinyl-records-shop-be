@@ -5,6 +5,7 @@
       "ESNext"
     ],
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
