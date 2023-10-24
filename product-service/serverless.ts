@@ -5,7 +5,11 @@ import type { AWS } from "@serverless/typescript";
 const serverlessConfiguration: AWS = {
   service: "product-service",
   frameworkVersion: "3",
-  plugins: ["serverless-esbuild", "serverless-auto-swagger"],
+  plugins: [
+    "serverless-esbuild",
+    "serverless-auto-swagger",
+    "serverless-webpack",
+  ],
   provider: {
     name: "aws",
     runtime: "nodejs16.x",
@@ -33,6 +37,9 @@ const serverlessConfiguration: AWS = {
       define: { "require.resolve": undefined },
       platform: "node",
       concurrency: 10,
+    },
+    webpack: {
+      excludeFiles: "**/*.test.js",
     },
   },
 };
