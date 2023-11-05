@@ -1,5 +1,5 @@
 import { headers } from "../../libs/api-gateway";
-import { mockedMusicRecords } from "../../model/mocked-data";
+import { mockedMusicRecords } from "../../../db/mocked-data";
 import { getProductsList } from "./handler";
 
 describe("getProductsList", () => {

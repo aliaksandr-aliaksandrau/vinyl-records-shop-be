@@ -1,4 +1,4 @@
-import MusicRecord from "./music-record";
+import MusicRecord from "../src/model/music-record";
 
 export const mockedMusicRecords: MusicRecord[] = [
   {

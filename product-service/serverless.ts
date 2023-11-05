@@ -9,6 +9,8 @@ const serverlessConfiguration: AWS = {
     "serverless-esbuild",
     "serverless-auto-swagger",
     "serverless-webpack",
+    "serverless-dynamodb-local",
+    "serverless-offline",
   ],
   provider: {
     name: "aws",
@@ -22,10 +24,34 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
+      PRODUCTS_TABLE: "products",
+      STOCKS_TABLE: "stocks",
     },
+    iamRoleStatements: [
+      {
+        Effect: "Allow",
+        Action: [
+          "dynamodb:BatchGetItem",
+          "dynamodb:GetItem",
+          "dynamodb:PutItem",
+          "dynamodb:UpdateItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:Query",
+          "dynamodb:Scan",
+        ],
+        Resource: "arn:aws:dynamodb:*:*:*",
+      },
+    ],
   },
   // import the function via paths
-  functions: { getProductsList, getProductById },
+  functions: {
+    getProductsList,
+    getProductById,
+    populateData: {
+      handler: "db/populate-data.populateData",
+      timeout: 10,
+    },
+  },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -40,6 +66,14 @@ const serverlessConfiguration: AWS = {
     },
     webpack: {
       excludeFiles: "**/*.test.js",
+    },
+    dynamodb: {
+      stages: ["dev"],
+      start: {
+        port: 8000,
+        inMemory: true,
+        migrate: true,
+      },
     },
   },
 };
