@@ -36,7 +36,6 @@ const putStock = async (productId: string, count: number) => {
 };
 
 export const populateData = async () => {
-  console.log('AAA: TEST');
   try {
     for (let product of mockedMusicRecords) {
       await putProduct(

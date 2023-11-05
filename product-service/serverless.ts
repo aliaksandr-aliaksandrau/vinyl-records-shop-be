@@ -21,27 +21,35 @@ const serverlessConfiguration: AWS = {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
     },
+    httpApi: {
+      cors: true,
+    },
+    iam: {
+      role: {
+        managedPolicies: ['arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess']
+      },
+    },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
       PRODUCTS_TABLE: "products",
       STOCKS_TABLE: "stocks",
     },
-    iamRoleStatements: [
-      {
-        Effect: "Allow",
-        Action: [
-          "dynamodb:BatchGetItem",
-          "dynamodb:GetItem",
-          "dynamodb:PutItem",
-          "dynamodb:UpdateItem",
-          "dynamodb:DeleteItem",
-          "dynamodb:Query",
-          "dynamodb:Scan",
-        ],
-        Resource: "arn:aws:dynamodb:*:*:*",
-      },
-    ],
+    // iamRoleStatements: [
+    //   {
+    //     Effect: "Allow",
+    //     Action: [
+    //       "dynamodb:BatchGetItem",
+    //       "dynamodb:GetItem",
+    //       "dynamodb:PutItem",
+    //       "dynamodb:UpdateItem",
+    //       "dynamodb:DeleteItem",
+    //       "dynamodb:Query",
+    //       "dynamodb:Scan",
+    //     ],
+    //     Resource: "arn:aws:dynamodb:*:*:*",
+    //   },
+    // ],
   },
   // import the function via paths
   functions: {

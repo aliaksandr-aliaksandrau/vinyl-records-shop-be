@@ -5,7 +5,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80aa",
     count: 4,
     description: "Short Product Description1",
-    price: 2.4,
+    price: 24,
     title: "Cosmo's Factory",
     artist: "Creedence Clearwater Revival",
     year: 1970,

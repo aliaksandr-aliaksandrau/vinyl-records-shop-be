@@ -4,7 +4,7 @@ import { getProductsList } from "./handler";
 
 describe("getProductsList", () => {
   it("should return correct API response", async () => {
-    const result = await getProductsList();
+    const result = await getProductsList({});
 
     const expectedResult = {
       statusCode: 200,
