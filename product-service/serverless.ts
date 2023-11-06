@@ -1,3 +1,4 @@
+import createProduct from "@functions/create-product";
 import getProductById from "@functions/get-product-by-id";
 import getProductsList from "@functions/get-products-list";
 import type { AWS } from "@serverless/typescript";
@@ -40,6 +41,7 @@ const serverlessConfiguration: AWS = {
   functions: {
     getProductsList,
     getProductById,
+    createProduct,
     populateData: {
       handler: "db/populate-data.populateData",
       timeout: 10,
