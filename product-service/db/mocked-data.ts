@@ -9,7 +9,8 @@ export const mockedMusicRecords: MusicRecord[] = [
     title: "Cosmo's Factory",
     artist: "Creedence Clearwater Revival",
     year: 1970,
-    album_cover_link: 'https://upload.wikimedia.org/wikipedia/en/5/58/Jeffair.jpg'
+    album_cover_link:
+      "https://upload.wikimedia.org/wikipedia/en/5/58/Jeffair.jpg",
   },
   {
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80a0",
@@ -19,7 +20,8 @@ export const mockedMusicRecords: MusicRecord[] = [
     title: "Let It Be",
     artist: "The Beatles",
     year: 1970,
-    album_cover_link: 'https://upload.wikimedia.org/wikipedia/en/2/25/LetItBe.jpg'
+    album_cover_link:
+      "https://upload.wikimedia.org/wikipedia/en/2/25/LetItBe.jpg",
   },
   {
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80a2",
@@ -29,6 +31,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     title: "The Wall",
     artist: "Pink Floyd",
     year: 1979,
+    album_cover_link: "",
   },
   {
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80a1",
@@ -38,6 +41,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     title: "Wish You Were Here",
     artist: "Pink Floyd",
     year: 1975,
+    album_cover_link: "",
   },
   {
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80a3",
@@ -47,6 +51,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     title: "The Doors",
     artist: "The Doors",
     year: 1967,
+    album_cover_link: "",
   },
   {
     id: "7567ec4b-b10c-48c5-9345-fc73348a80a1",
@@ -56,6 +61,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     title: "Surrealistic Pillow",
     artist: "Jefferson Airplane",
     year: 1967,
+    album_cover_link: "",
   },
   {
     id: "7567ec4b-b10c-48c5-9445-fc73c48a80a2",
@@ -65,6 +71,7 @@ export const mockedMusicRecords: MusicRecord[] = [
     title: "Led Zeppelin IV",
     artist: "Led Zeppelin",
     year: 1971,
+    album_cover_link: "",
   },
   {
     id: "7567ec4b-b10c-45c5-9345-fc73c48a80a1",
@@ -74,5 +81,6 @@ export const mockedMusicRecords: MusicRecord[] = [
     title: "Look at Yourself",
     artist: "Uriah Heep",
     year: 1971,
+    album_cover_link: "",
   },
 ];

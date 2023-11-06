@@ -11,6 +11,7 @@ const serverlessConfiguration: AWS = {
     "serverless-webpack",
     "serverless-dynamodb-local",
     "serverless-offline",
+    "serverless-offline-watcher",
   ],
   provider: {
     name: "aws",
@@ -26,7 +27,7 @@ const serverlessConfiguration: AWS = {
     },
     iam: {
       role: {
-        managedPolicies: ['arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess']
+        managedPolicies: ["arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"],
       },
     },
     environment: {
@@ -35,23 +36,7 @@ const serverlessConfiguration: AWS = {
       PRODUCTS_TABLE: "products",
       STOCKS_TABLE: "stocks",
     },
-    // iamRoleStatements: [
-    //   {
-    //     Effect: "Allow",
-    //     Action: [
-    //       "dynamodb:BatchGetItem",
-    //       "dynamodb:GetItem",
-    //       "dynamodb:PutItem",
-    //       "dynamodb:UpdateItem",
-    //       "dynamodb:DeleteItem",
-    //       "dynamodb:Query",
-    //       "dynamodb:Scan",
-    //     ],
-    //     Resource: "arn:aws:dynamodb:*:*:*",
-    //   },
-    // ],
   },
-  // import the function via paths
   functions: {
     getProductsList,
     getProductById,

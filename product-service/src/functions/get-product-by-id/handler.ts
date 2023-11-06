@@ -8,7 +8,10 @@ export const getProductById = async (
   event: APIGatewayEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
+    // console.log("getProductById: event: ", event);
     const productId = event.pathParameters && event.pathParameters.productId;
+
+    console.log("getProductById: productId: ", productId);
 
     if (!productId) {
       return {
@@ -17,16 +20,32 @@ export const getProductById = async (
       };
     }
 
-    const musicRecord = await productsDataService.getMusicRecordById(productId);
+    let musicRecord;
+    let stock;
+    let result;
+
+    [musicRecord, stock] = await Promise.all([
+      productsDataService.getMusicRecordById(productId),
+      productsDataService.getStockById(productId),
+    ]);
+
+    console.log("getProductById: musicRecord: ", musicRecord);
+    console.log("getProductById: stock: ", stock);
+
+    if (musicRecord) {
+      result = { ...musicRecord, count: stock?.count || 0 };
+    } else {
+      result = {
+        message: "Music record not found",
+      };
+    }
+
+    console.log("getProductById: result: ", result);
 
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify(
-        musicRecord || {
-          message: "Music record not found",
-        }
-      ),
+      body: JSON.stringify(result),
     };
   } catch (e) {
     return {

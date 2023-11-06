@@ -1,7 +1,10 @@
-import { DynamoDBClient, ScanCommand } from "@aws-sdk/client-dynamodb";
+import {
+  DynamoDBClient,
+  GetItemCommand,
+  ScanCommand,
+} from "@aws-sdk/client-dynamodb";
 
 import MusicRecord from "../model/music-record";
-import { mockedMusicRecords } from "./../../db/mocked-data";
 
 const { unmarshall } = require("@aws-sdk/util-dynamodb");
 const client = new DynamoDBClient({ region: "eu-west-1" });
@@ -13,6 +16,8 @@ const productsParams = {
 const stocksParams = {
   TableName: "stocks",
 };
+
+type MusicRecordStock = { product_id: string; count: number };
 
 export default class ProductsDataService {
   constructor() {}
@@ -27,12 +32,52 @@ export default class ProductsDataService {
   };
 
   getMusicRecordById: (id: string) => Promise<MusicRecord> = async (id) => {
-    return mockedMusicRecords.find((el) => el.id === id);
+    try {
+      const params = {
+        TableName: productsParams.TableName,
+        Key: {
+          id: { S: id },
+        },
+      };
+      const command = new GetItemCommand(params);
+      const response = await client.send(command);
+      const item = response.Item;
+      if (item) {
+        return unmarshall(item);
+      }
+
+      return item;
+    } catch (e) {
+      console.error("Error on get record by id: ", e);
+      return null;
+    }
   };
 
-  getMusicRecordsStocks: () => Promise<
-    { product_id: string; count: number }[]
-  > = async () => {
+  getStockById: (id: string) => Promise<MusicRecordStock> = async (
+    id
+  ) => {
+    try {
+      const params = {
+        TableName: stocksParams.TableName,
+        Key: {
+          product_id: { S: id },
+        },
+      };
+      const command = new GetItemCommand(params);
+      const response = await client.send(command);
+      const item = response.Item;
+      if (item) {
+        return unmarshall(item);
+      }
+
+      return item;
+    } catch (e) {
+      console.error("Error on get stock by id: ", e);
+      return null;
+    }
+  };
+
+  getStocks: () => Promise<MusicRecordStock[]> = async () => {
     try {
       const command = new ScanCommand(stocksParams);
       const response = await client.send(command);
