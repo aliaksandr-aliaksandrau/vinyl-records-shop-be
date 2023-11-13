@@ -1,5 +1,5 @@
-import { headers } from "./../../libs/api-gateway";
-import { mockedMusicRecords } from "./../../model/mocked-data";
+import { headers } from "../../libs/api-gateway";
+import { mockedMusicRecords } from "../../../db/mocked-data";
 import { getProductById } from "./handler";
 import { APIGatewayEvent } from "aws-lambda";
 

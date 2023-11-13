@@ -16,7 +16,8 @@
   },
   "include": [
     "src/**/*.ts",
-    "serverless.ts"
+    "serverless.ts",
+    "db/mocked-data.ts"
   ],
   "exclude": [
     "node_modules/**/*",

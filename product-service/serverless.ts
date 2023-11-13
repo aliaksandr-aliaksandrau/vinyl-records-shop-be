@@ -1,3 +1,4 @@
+import createProduct from "@functions/create-product";
 import getProductById from "@functions/get-product-by-id";
 import getProductsList from "@functions/get-products-list";
 import type { AWS } from "@serverless/typescript";
@@ -9,6 +10,9 @@ const serverlessConfiguration: AWS = {
     "serverless-esbuild",
     "serverless-auto-swagger",
     "serverless-webpack",
+    "serverless-dynamodb-local",
+    "serverless-offline",
+    "serverless-offline-watcher",
   ],
   provider: {
     name: "aws",
@@ -19,13 +23,30 @@ const serverlessConfiguration: AWS = {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
     },
+    httpApi: {
+      cors: true,
+    },
+    iam: {
+      role: {
+        managedPolicies: ["arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"],
+      },
+    },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
       NODE_OPTIONS: "--enable-source-maps --stack-trace-limit=1000",
+      PRODUCTS_TABLE: "products",
+      STOCKS_TABLE: "stocks",
     },
   },
-  // import the function via paths
-  functions: { getProductsList, getProductById },
+  functions: {
+    getProductsList,
+    getProductById,
+    createProduct,
+    populateData: {
+      handler: "db/populate-data.populateData",
+      timeout: 10,
+    },
+  },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -40,6 +61,14 @@ const serverlessConfiguration: AWS = {
     },
     webpack: {
       excludeFiles: "**/*.test.js",
+    },
+    dynamodb: {
+      stages: ["dev"],
+      start: {
+        port: 8000,
+        inMemory: true,
+        migrate: true,
+      },
     },
   },
 };
